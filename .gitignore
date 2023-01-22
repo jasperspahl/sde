@@ -57,4 +57,6 @@ dkms.conf
 
 # End of https://www.toptal.com/developers/gitignore/api/c
 primes
+sde_segmented
+sde_segmented_debug
 .ccls-cache/
