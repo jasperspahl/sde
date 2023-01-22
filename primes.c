@@ -1,16 +1,14 @@
 #include <stdio.h>
 #include <stdint.h>
 
+#include "utils.h"
+#include "gettime.h"
+
 #define N 100000000
 #define SQRT_N 10000
 #define S 64
-#define T uint64_t
 
-#include "gettime.h"
-
-static T primes[N/S] = {0};
-
-uint64_t countBits(T bb);
+static uint64_t primes[N/S] = {0};
 
 int main(void)
 {
@@ -49,24 +47,3 @@ int main(void)
 	return 0;
 }
 
-uint64_t countBits(T bb)
-{
-#ifdef __GNUC__
-	return __builtin_popcountll(bb);
-#else
-#ifdef _MSC_VER
-	return _mm_popcnt_u64(bb);
-#else
-	uint64_t t = 0;
-	if(bb)
-	{
-		for(size_t i = 0; i < S; ++i)
-		{
-			t += bb & 1;
-			bb >>=1;
-		}
-	}
-	return t;
-#endif
-#endif
-}
